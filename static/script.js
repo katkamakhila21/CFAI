@@ -32,7 +32,17 @@ async function analyzeSort() {
         return;
     }
 
+    let winner =
+        data.bubble_time < data.merge_time
+        ? "Bubble Sort 🚀"
+        : "Merge Sort 🚀";
+
     resultDiv.innerHTML = `
+
+    <div class="card winner-card">
+        <h2>Faster Algorithm</h2>
+        <p><strong>${winner}</strong></p>
+    </div>
 
     <div class="card">
         <h2>Bubble Sort Results</h2>

@@ -114,3 +114,8 @@ button:hover{
     font-weight:bold;
     margin-top:20px;
 }
+.winner-card{
+    text-align:center;
+    font-size:20px;
+    font-weight:bold;
+}

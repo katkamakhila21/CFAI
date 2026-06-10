@@ -69,6 +69,10 @@ async function analyzeSort() {
         <p><strong>Time Complexity:</strong>
         ${data.merge_complexity}</p>
     </div>
-
     `;
+}
+
+function resetFields() {
+    document.getElementById("numbers").value = "";
+    document.getElementById("result").innerHTML = "";
 }

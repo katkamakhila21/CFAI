@@ -119,3 +119,11 @@ button:hover{
     font-size:20px;
     font-weight:bold;
 }
+.reset-btn{
+    background:#dc2626;
+    margin-top:10px;
+}
+
+.reset-btn:hover{
+    background:#b91c1c;
+}

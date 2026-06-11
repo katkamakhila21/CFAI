@@ -52,5 +52,3 @@ Visit `http://localhost:5000` in your browser.
 | Bubble Sort | O(n) | O(n²) | O(n²) |
 | Merge Sort | O(n log n) | O(n log n) | O(n log n) |
 
----
-**Made with ❤️ by Akhila** | © 2026

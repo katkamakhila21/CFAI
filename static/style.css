@@ -182,3 +182,19 @@ footer{
 .insight-card h2{
     color:#16a34a;
 }
+.history-card{
+    margin-top:20px;
+    border-left:6px solid #f59e0b;
+}
+
+.history-card h2{
+    color:#f59e0b;
+}
+
+.history-card ul{
+    padding-left:20px;
+}
+
+.history-card li{
+    margin-bottom:10px;
+}

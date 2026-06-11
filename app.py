@@ -47,6 +47,7 @@ def merge(left, right):
 
     result.extend(left[i:])
     result.extend(right[j:])
+
     return result
 
 
@@ -63,13 +64,37 @@ def analyze():
     try:
         numbers = list(map(int, data['numbers']))
 
+        # Bubble Sort Analysis
         bubble_sorted, bubble_time = bubble_sort(numbers)
 
+        # Merge Sort Analysis
         start = time.perf_counter()
         merge_sorted = merge_sort(numbers)
         end = time.perf_counter()
 
         merge_time = round((end - start) * 1000, 6)
+
+        # Statistics
+        count = len(numbers)
+        minimum = min(numbers)
+        maximum = max(numbers)
+        average = round(sum(numbers) / len(numbers), 2)
+
+        # Performance Insight
+        if merge_time < bubble_time:
+            insight = (
+                "Merge Sort performed better because it uses the "
+                "divide-and-conquer approach and has O(n log n) complexity."
+            )
+        elif bubble_time < merge_time:
+            insight = (
+                "Bubble Sort performed better for this small dataset, "
+                "although its worst-case complexity is O(n²)."
+            )
+        else:
+            insight = (
+                "Both algorithms performed similarly for this dataset."
+            )
 
         return jsonify({
             "bubble_sorted": bubble_sorted,
@@ -78,10 +103,17 @@ def analyze():
 
             "merge_sorted": merge_sorted,
             "merge_time": merge_time,
-            "merge_complexity": "O(n log n)"
+            "merge_complexity": "O(n log n)",
+
+            "count": count,
+            "minimum": minimum,
+            "maximum": maximum,
+            "average": average,
+
+            "insight": insight
         })
 
-    except:
+    except Exception:
         return jsonify({
             "error": "Please enter valid numbers."
         })

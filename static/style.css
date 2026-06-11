@@ -175,3 +175,10 @@ footer{
     margin-bottom:8px;
     color:#444;
 }
+.insight-card{
+    border-left:6px solid #16a34a;
+}
+
+.insight-card h2{
+    color:#16a34a;
+}

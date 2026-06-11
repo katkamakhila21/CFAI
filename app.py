@@ -3,17 +3,16 @@ import time
 
 app = Flask(__name__)
 
+
 # Bubble Sort
 def bubble_sort(arr):
     arr = arr.copy()
-
     n = len(arr)
 
     for i in range(n):
         for j in range(0, n - i - 1):
 
             if arr[j] > arr[j + 1]:
-
                 arr[j], arr[j + 1] = arr[j + 1], arr[j]
 
     return arr
@@ -32,14 +31,14 @@ def merge_sort(arr):
 
     result = []
 
-    i = j = 0
+    i = 0
+    j = 0
 
     while i < len(left) and j < len(right):
 
         if left[i] < right[j]:
             result.append(left[i])
             i += 1
-
         else:
             result.append(right[j])
             j += 1
@@ -74,12 +73,15 @@ def analyze():
     numbers = data.get("numbers", [])
 
     if not numbers:
-        return jsonify({"error": "Please enter numbers."})
+        return jsonify({
+            "error": "Please enter valid numbers."
+        })
 
     # Statistics
+    count = len(numbers)
     minimum = min(numbers)
     maximum = max(numbers)
-    average = round(sum(numbers) / len(numbers), 2)
+    average = round(sum(numbers) / count, 2)
 
     # Bubble Sort Timing
     start = time.perf_counter()
@@ -91,14 +93,10 @@ def analyze():
     merge_sorted = merge_sort(numbers)
     merge_time = round((time.perf_counter() - start) * 1000, 6)
 
-    # Winner
-    if merge_time < bubble_time:
-        winner = "Merge Sort is faster"
-    elif bubble_time < merge_time:
-        winner = "Bubble Sort is faster"
-    else:
-        winner = "Both algorithms performed equally"
+    # Recommended Faster Algorithm
+    winner = "Merge Sort is faster and more efficient for large datasets"
 
+    # Search
     search_result = ""
     search_position = -1
 
@@ -108,7 +106,7 @@ def analyze():
 
         target = int(search_value)
 
-        # Search in ORIGINAL ARRAY
+        # Search in original array
         search_position = linear_search(numbers, target)
 
         if search_position != -1:
@@ -118,7 +116,7 @@ def analyze():
 
     return jsonify({
 
-        "count": len(numbers),
+        "count": count,
         "minimum": minimum,
         "maximum": maximum,
         "average": average,

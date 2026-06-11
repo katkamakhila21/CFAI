@@ -137,3 +137,20 @@ footer{
     color:white;
     font-size:14px;
 }
+.about-section{
+    background:#f8fafc;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:20px;
+    border-left:5px solid #2563eb;
+}
+
+.about-section h3{
+    color:#2563eb;
+    margin-bottom:10px;
+}
+
+.about-section p{
+    color:#444;
+    line-height:1.6;
+}

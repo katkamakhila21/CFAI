@@ -3,21 +3,29 @@ import time
 
 app = Flask(__name__)
 
+
 # Bubble Sort
 def bubble_sort(arr):
     arr = arr.copy()
+
+    start = time.perf_counter()
+
     n = len(arr)
 
-    start_time = time.perf_counter()
-
     for i in range(n):
+        swapped = False
+
         for j in range(0, n - i - 1):
             if arr[j] > arr[j + 1]:
                 arr[j], arr[j + 1] = arr[j + 1], arr[j]
+                swapped = True
 
-    end_time = time.perf_counter()
+        if not swapped:
+            break
 
-    return arr, round((end_time - start_time) * 1000, 6)
+    end = time.perf_counter()
+
+    return arr, round((end - start) * 1000, 6)
 
 
 # Merge Sort
@@ -35,10 +43,12 @@ def merge_sort(arr):
 
 def merge(left, right):
     result = []
-    i = j = 0
+
+    i = 0
+    j = 0
 
     while i < len(left) and j < len(right):
-        if left[i] < right[j]:
+        if left[i] <= right[j]:
             result.append(left[i])
             i += 1
         else:
@@ -51,23 +61,22 @@ def merge(left, right):
     return result
 
 
-@app.route('/')
+@app.route("/")
 def home():
-    return render_template('index.html')
+    return render_template("index.html")
 
 
-@app.route('/analyze', methods=['POST'])
+@app.route("/analyze", methods=["POST"])
 def analyze():
-
-    data = request.get_json()
-
     try:
-        numbers = list(map(int, data['numbers']))
+        data = request.get_json()
 
-        # Bubble Sort Analysis
+        numbers = list(map(int, data["numbers"]))
+
+        # Bubble Sort
         bubble_sorted, bubble_time = bubble_sort(numbers)
 
-        # Merge Sort Analysis
+        # Merge Sort
         start = time.perf_counter()
         merge_sorted = merge_sort(numbers)
         end = time.perf_counter()
@@ -78,23 +87,15 @@ def analyze():
         count = len(numbers)
         minimum = min(numbers)
         maximum = max(numbers)
-        average = round(sum(numbers) / len(numbers), 2)
+        average = round(sum(numbers) / count, 2)
 
-        # Performance Insight
-        if merge_time < bubble_time:
-            insight = (
-                "Merge Sort performed better because it uses the "
-                "divide-and-conquer approach and has O(n log n) complexity."
-            )
-        elif bubble_time < merge_time:
-            insight = (
-                "Bubble Sort performed better for this small dataset, "
-                "although its worst-case complexity is O(n²)."
-            )
+        # Faster Algorithm
+        if bubble_time < merge_time:
+            winner = "Bubble Sort"
+        elif merge_time < bubble_time:
+            winner = "Merge Sort"
         else:
-            insight = (
-                "Both algorithms performed similarly for this dataset."
-            )
+            winner = "Both performed similarly"
 
         return jsonify({
             "bubble_sorted": bubble_sorted,
@@ -110,12 +111,12 @@ def analyze():
             "maximum": maximum,
             "average": average,
 
-            "insight": insight
+            "winner": winner
         })
 
-    except Exception:
+    except:
         return jsonify({
-            "error": "Please enter valid numbers."
+            "error": "Please enter valid numbers separated by commas."
         })
 
 

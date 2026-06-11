@@ -5,96 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SortScope</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
 
-    <div class="container">
+<div class="container">
 
-        <h1>SortScope</h1>
+    <h1>🔍 SortScope</h1>
 
-        <p class="subtitle">
-            Compare Bubble Sort and Merge Sort Time Complexity
-        </p>
+    <p class="subtitle">
+        Compare Bubble Sort and Merge Sort
+    </p>
 
-        <!-- About Section -->
-        <div class="about-section">
-            <h3>About SortScope</h3>
-            <p>
-                SortScope is an interactive web application that allows users to compare
-                the performance of Bubble Sort and Merge Sort algorithms. Users can enter
-                a sequence of numbers, analyze sorting results, view execution times,
-                compare time complexities, and identify the faster algorithm.
-            </p>
-        </div>
+    <div class="complexity-table">
 
-        <!-- Features Section -->
-        <div class="features-section">
-            <h3>Key Features</h3>
-            <ul>
-                <li>Compare Bubble Sort and Merge Sort performance</li>
-                <li>View execution time in milliseconds</li>
-                <li>Display theoretical time complexities</li>
-                <li>Identify the faster sorting algorithm</li>
-                <li>View input statistics (minimum, maximum, average, count)</li>
-                <li>Reset and analyze new datasets instantly</li>
-            </ul>
-        </div>
+        <h3>Algorithm Time Complexity</h3>
 
-        <!-- Complexity Table -->
-        <div class="complexity-table">
-            <h3>Algorithm Complexity Comparison</h3>
+        <table>
 
-            <table>
-                <tr>
-                    <th>Algorithm</th>
-                    <th>Best Case</th>
-                    <th>Average Case</th>
-                    <th>Worst Case</th>
-                </tr>
+            <tr>
+                <th>Algorithm</th>
+                <th>Best Case</th>
+                <th>Average Case</th>
+                <th>Worst Case</th>
+            </tr>
 
-                <tr>
-                    <td>Bubble Sort</td>
-                    <td>O(n)</td>
-                    <td>O(n²)</td>
-                    <td>O(n²)</td>
-                </tr>
+            <tr>
+                <td>Bubble Sort</td>
+                <td>O(n)</td>
+                <td>O(n²)</td>
+                <td>O(n²)</td>
+            </tr>
 
-                <tr>
-                    <td>Merge Sort</td>
-                    <td>O(n log n)</td>
-                    <td>O(n log n)</td>
-                    <td>O(n log n)</td>
-                </tr>
-            </table>
-        </div>
+            <tr>
+                <td>Merge Sort</td>
+                <td>O(n log n)</td>
+                <td>O(n log n)</td>
+                <td>O(n log n)</td>
+            </tr>
 
-        <!-- Input Area -->
-        <textarea
-            id="numbers"
-            placeholder="Enter numbers separated by commas&#10;Example: 45,23,67,12,89,4">
-        </textarea>
-
-        <!-- Buttons -->
-        <button onclick="analyzeSort()">
-            Analyze Sorting Algorithms
-        </button>
-
-        <button class="reset-btn" onclick="resetFields()">
-            Reset
-        </button>
-
-        <!-- Results -->
-        <div id="result"></div>
+        </table>
 
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>Developed by Akhila | SortScope Project © 2026</p>
-    </footer>
+    <textarea
+        id="numbers"
+        placeholder="Enter numbers separated by commas&#10;Example: 45, 23, 67, 12, 89">
+    </textarea>
 
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <div class="buttons">
+        <button class="btn-primary" onclick="analyzeSort()">
+            Analyze
+        </button>
+
+        <button class="btn-secondary" onclick="resetFields()">
+            Reset
+        </button>
+    </div>
+
+    <div id="result"></div>
+
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
 
 </body>
 </html>

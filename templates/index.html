@@ -55,7 +55,18 @@
         placeholder="Enter numbers separated by commas&#10;Example: 45, 23, 67, 12, 89">
     </textarea>
 
+    <label for="searchNumber">
+        Search Number (Optional)
+    </label>
+
+    <input
+        type="number"
+        id="searchNumber"
+        placeholder="Example: 67"
+    >
+
     <div class="buttons">
+
         <button class="btn-primary" onclick="analyzeSort()">
             Analyze
         </button>
@@ -63,6 +74,7 @@
         <button class="btn-secondary" onclick="resetFields()">
             Reset
         </button>
+
     </div>
 
     <div id="result"></div>
